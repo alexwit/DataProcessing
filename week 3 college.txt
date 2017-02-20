@@ -1,0 +1,17 @@
+College 3: trees and netorks:
+
+koska, 199
+Easthetic rules om netwerken weer te geven.
+Lengte van links gelijk houden, number of crossings minimaliseren
+
+Zo planair mogelijk
+syntactic validity 	- 	geen overlap
+perceptual organiziation	- symmetrie
+Aestetic optimality
+
+D3 algorithm
+
+Force based layouts
+
+
+visiual
