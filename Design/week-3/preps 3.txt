@@ -1,0 +1,87 @@
+
+	Analysis
+
+
+
+
+Example 2 is more planair in comparison to example 1. 
+Exampel 2 doesn't show details about the commits while in example 1 	each commit shows details about the changens due to the commit.
+
+
+Bigger branches and color coded. If it is design, debugging, new function etc. A different color code and branch.
+Also a different color for a commit of a different user. 
+
+- New function
+- Debugging
+- Design
+- Code design
+- Front-end
+- Back-end
+- Documentation
+	
+Different colours show different branches of the master / root.
+It doesn't what the different colours mean. 
+
+Maybe the different colours mean different type of users. Development en Design for example. 
+
+Do you think it is necessary to represent every single commit as a separate node? Could you think of ways to aggregate this?
+THere is a lot of repetition and not per se a new shape for another function. Only the branch shows a different function. 
+
+
+Maybe a top down branch / network. with a master and branches to sides for different codes. 
+
+
+
+
+
+
+college process
+
+- Target : clear research question, clear domain: know what you want from your data. 
+- translate: exploratory data analysis 
+- design: encoding, depends the question you want to answer. design interactions, sketch many ideas. 
+- implement:  
+- validate: does it support te task, are the abstraction right, does it provide new insights. 
+
+
+
+
+
+College D3 
+
+Chain style//
+
+
+var svg = d3.select("div.output svg")
+ 
+svg.select("rect")
+	.attr({
+	height()
+	width()
+	})
+	.style("fill", "steelblue")
+
+
+or 
+svg.select("rect")
+	.attr("width", 100)
+	.attr... 
+
+.selectAll("rect")
+	.attr("x", 0)
+	.atr("y", function(d,i) { return i * 90+ 50 })
+	.atr(function to create different bars.
+
+
+.data()
+
+.transition() 
+
+If you call upon enter() before you specify the details of the object. all new elements will be give that same specifications.
+
+
+
+
+
+
+
