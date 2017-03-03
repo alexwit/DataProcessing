@@ -8,7 +8,7 @@ import csv
 import json  
   
 # Open the CSV  
-csv_f_path = "data/d387006c-66ce-4f1e-834d-82087c2f7d85_Data.csv!!!!"
+csv_f_path = "data/d387006c-66ce-4f1e-834d-82087c2f7d85_Data.csv"
 fieldnames = ("serieName","serieCode", "countryName", "countryCode", "usage")
 # "Onderwerpen_1", "Bevolkingsgroei", "Bevolkingsdichtheid"
 

@@ -11,7 +11,7 @@ Access to electricity (% of population),EG.ELC.ACCS.ZS,Aruba,ABW,87.87328
 Access to electricity (% of population),EG.ELC.ACCS.ZS,Australia,AUS,100
 Access to electricity (% of population),EG.ELC.ACCS.ZS,Austria,AUT,100
 Access to electricity (% of population),EG.ELC.ACCS.ZS,Azerbaijan,AZE,99.5
-"Access to electricity (% of population),EG.ELC.ACCS.ZS,""Bahamas The"",BHS,100"
+Access to electricity (% of population),EG.ELC.ACCS.ZS,Bahamas The,BHS,100
 Access to electricity (% of population),EG.ELC.ACCS.ZS,Bahrain,BHR,94.1
 Access to electricity (% of population),EG.ELC.ACCS.ZS,Bangladesh,BGD,55.2
 Access to electricity (% of population),EG.ELC.ACCS.ZS,Barbados,BRB,87.87328
@@ -42,8 +42,8 @@ Access to electricity (% of population),EG.ELC.ACCS.ZS,Chile,CHL,99
 Access to electricity (% of population),EG.ELC.ACCS.ZS,China,CHN,99.7
 Access to electricity (% of population),EG.ELC.ACCS.ZS,Colombia,COL,96.7
 Access to electricity (% of population),EG.ELC.ACCS.ZS,Comoros,COM,51.5
-"Access to electricity (% of population),EG.ELC.ACCS.ZS,""Congo Dem. Rep."",ZAR,15.2"
-"Access to electricity (% of population),EG.ELC.ACCS.ZS,""Congo Rep."",COG,37.1"
+Access to electricity (% of population),EG.ELC.ACCS.ZS,Congo Dem. Rep.,ZAR,15.2
+Access to electricity (% of population),EG.ELC.ACCS.ZS,Congo Rep.,COG,37.1
 Access to electricity (% of population),EG.ELC.ACCS.ZS,Costa Rica,CRI,98
 Access to electricity (% of population),EG.ELC.ACCS.ZS,Cote d'Ivoire,CIV,58.9
 Access to electricity (% of population),EG.ELC.ACCS.ZS,Croatia,HRV,100
@@ -56,7 +56,7 @@ Access to electricity (% of population),EG.ELC.ACCS.ZS,Djibouti,DJI,49.7
 Access to electricity (% of population),EG.ELC.ACCS.ZS,Dominica,DMA,91.83897
 Access to electricity (% of population),EG.ELC.ACCS.ZS,Dominican Republic,DOM,98
 Access to electricity (% of population),EG.ELC.ACCS.ZS,Ecuador,ECU,97
-"Access to electricity (% of population),EG.ELC.ACCS.ZS,""Egypt Arab Rep."",EGY,99.6"
+Access to electricity (% of population),EG.ELC.ACCS.ZS,Egypt Arab Rep.,EGY,99.6
 Access to electricity (% of population),EG.ELC.ACCS.ZS,El Salvador,SLV,92
 Access to electricity (% of population),EG.ELC.ACCS.ZS,Equatorial Guinea,GNQ,65.1722
 Access to electricity (% of population),EG.ELC.ACCS.ZS,Eritrea,ERI,32.5
@@ -68,7 +68,7 @@ Access to electricity (% of population),EG.ELC.ACCS.ZS,Finland,FIN,100
 Access to electricity (% of population),EG.ELC.ACCS.ZS,France,FRA,100
 Access to electricity (% of population),EG.ELC.ACCS.ZS,French Polynesia,PYF,55.8
 Access to electricity (% of population),EG.ELC.ACCS.ZS,Gabon,GAB,81.6
-"Access to electricity (% of population),EG.ELC.ACCS.ZS,""Gambia The"",GMB,31"
+Access to electricity (% of population),EG.ELC.ACCS.ZS,Gambia The,GMB,31
 Access to electricity (% of population),EG.ELC.ACCS.ZS,Georgia,GEO,100
 Access to electricity (% of population),EG.ELC.ACCS.ZS,Germany,DEU,100
 Access to electricity (% of population),EG.ELC.ACCS.ZS,Ghana,GHA,60.5
@@ -83,12 +83,12 @@ Access to electricity (% of population),EG.ELC.ACCS.ZS,Guinea-Bissau,GNB,57
 Access to electricity (% of population),EG.ELC.ACCS.ZS,Guyana,GUY,77
 Access to electricity (% of population),EG.ELC.ACCS.ZS,Haiti,HTI,33.9
 Access to electricity (% of population),EG.ELC.ACCS.ZS,Honduras,HND,80
-"Access to electricity (% of population),EG.ELC.ACCS.ZS,""Hong Kong SAR China"",HKG,100"
+Access to electricity (% of population),EG.ELC.ACCS.ZS,Hong Kong SAR China,HKG,100
 Access to electricity (% of population),EG.ELC.ACCS.ZS,Hungary,HUN,100
 Access to electricity (% of population),EG.ELC.ACCS.ZS,Iceland,ISL,100
 Access to electricity (% of population),EG.ELC.ACCS.ZS,India,IND,75
 Access to electricity (% of population),EG.ELC.ACCS.ZS,Indonesia,IDN,94.2
-"Access to electricity (% of population),EG.ELC.ACCS.ZS,""Iran Islamic Rep."",IRN,98.4"
+Access to electricity (% of population),EG.ELC.ACCS.ZS,Iran Islamic Rep.,IRN,98.4
 Access to electricity (% of population),EG.ELC.ACCS.ZS,Iraq,IRQ,98
 Access to electricity (% of population),EG.ELC.ACCS.ZS,Ireland,IRL,100
 Access to electricity (% of population),EG.ELC.ACCS.ZS,Isle of Man,IMY,100
@@ -100,8 +100,8 @@ Access to electricity (% of population),EG.ELC.ACCS.ZS,Jordan,JOR,99.4
 Access to electricity (% of population),EG.ELC.ACCS.ZS,Kazakhstan,KAZ,100
 Access to electricity (% of population),EG.ELC.ACCS.ZS,Kenya,KEN,23
 Access to electricity (% of population),EG.ELC.ACCS.ZS,Kiribati,KIR,55.8
-"Access to electricity (% of population),EG.ELC.ACCS.ZS,""NoordKorea"",PRK,26"
-"Access to electricity (% of population),EG.ELC.ACCS.ZS,""Korea, Rep."",KOR,99.7"
+Access to electricity (% of population),EG.ELC.ACCS.ZS,NoordKorea,PRK,26
+Access to electricity (% of population),EG.ELC.ACCS.ZS,Korea Rep.,KOR,99.7
 Access to electricity (% of population),EG.ELC.ACCS.ZS,Kosovo,KSV,100
 Access to electricity (% of population),EG.ELC.ACCS.ZS,Kuwait,KWT,94.1
 Access to electricity (% of population),EG.ELC.ACCS.ZS,Kyrgyz Republic,KGZ,100
@@ -208,11 +208,11 @@ Access to electricity (% of population),EG.ELC.ACCS.ZS,United States,USA,100
 Access to electricity (% of population),EG.ELC.ACCS.ZS,Uruguay,URY,99
 Access to electricity (% of population),EG.ELC.ACCS.ZS,Uzbekistan,UZB,100
 Access to electricity (% of population),EG.ELC.ACCS.ZS,Vanuatu,VUT,23.5
-"Access to electricity (% of population),EG.ELC.ACCS.ZS,""Venezuela, RB"",VEN,100"
+Access to electricity (% of population),EG.ELC.ACCS.ZS,Venezuela RB,VEN,100
 Access to electricity (% of population),EG.ELC.ACCS.ZS,Vietnam,VNM,96
 Access to electricity (% of population),EG.ELC.ACCS.ZS,Virgin Islands (U.S.),VIR,87.87328
 Access to electricity (% of population),EG.ELC.ACCS.ZS,West Bank and Gaza,WBG,94.1
-"Access to electricity (% of population),EG.ELC.ACCS.ZS,""Yemen, Rep."",YEM,44.8"
+Access to electricity (% of population),EG.ELC.ACCS.ZS,Yemen Rep.,YEM,44.8
 Access to electricity (% of population),EG.ELC.ACCS.ZS,Zambia,ZMB,18.5
 Access to electricity (% of population),EG.ELC.ACCS.ZS,Zimbabwe,ZWE,36.9
 ,,,,
