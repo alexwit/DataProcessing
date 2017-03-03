@@ -50,6 +50,7 @@ function mapLoad() {
 		});   
 
 		rendermap();
+		postLoad();
 
 		
 
@@ -58,8 +59,8 @@ function mapLoad() {
 	// Ik kan geen reden vinden waarom deze niet zou werken? 
 	function postLoad(){
 
-		/// krijgt ID data map niet te pakken? 
-		var svg = d3.select(".svg"); 
+		/// krijg svg niet te pakken? 
+		var svg = d3.select("datamap"); // datamap, getElementId/ Class geprobeerd? 
 		// adds title and gradient scale
 		var margin = {top: 100, right: 30, bottom: 30, left: 100},
 		width = 800 - margin.left - margin.right,
