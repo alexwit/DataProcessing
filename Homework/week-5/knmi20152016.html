@@ -1,0 +1,27 @@
+<!-- 10288880 -->
+<!-- AS Wittebrood -->
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- <link rel="stylesheet" type="text/css" href="datamap.css"> -->
+		<script src="https://d3js.org/d3.v4.min.js"></script>
+		<script src="http://code.jquery.com/jquery-latest.min.js"
+        type="text/javascript"></script>
+		
+	</head>
+	<body>
+		<div id="header"> <h3>AS Wittebrood 10288880</h3></div>
+		<div id="drop-down">
+			<select id="json_sources" name="json_sources">
+				<option value ="2015knmidata.json" selected>KNMI 2015</option>
+				<option value ="1993knmidata.json">KNMI 1993</option>
+			</select>​
+		</div>
+
+		<svg width="960" height="500"></svg>
+				<br>
+		<h4><span>Data sources:</span><a href="http://databank.worldbank.org/data/reports.aspx?source=2&series=EG.USE.PCAP.KG.OE&country=#">KNMI de bilt</a>, min mid en max temp.</h4>
+
+		<script type="text/javascript" src="multidatalinegraph.js"></script>
+	</body>
+</html>
