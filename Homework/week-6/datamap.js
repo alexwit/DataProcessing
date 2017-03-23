@@ -13,10 +13,20 @@ window.onload = function () {
 	mapLoad();
 }
 
+// que json files
+d3.queue(2)
+    .defer(function(url, callback) {
+		d3.json(url, function(error, file) {
+			if (error) throw error;
+			// draw map function
+			mapLoad(file);
+		})
+	}, "https:raw.githubusercontent.com/alexwit/DataProcessing/master/Homework/week-6/data/hapiness2015.json")
+    .await(if (error) throw error;);
 
-
-
-function mapLoad() {
+// https://raw.githubusercontent.com/alexwit/DataProcessing/master/Homework/week-6/data/happiness2016.json
+//https:raw.githubusercontent.com/alexwit/DataProcessing/master/Homework/week-6/data/hapiness2015.json
+function mapLoad(file) {
 
 	
 	postLoad();
@@ -24,7 +34,7 @@ function mapLoad() {
 	// var formatValue = d3.format(",.2%");
 
 	// getting the data from a json file
-	d3.json("hapiness2015.json" ,function(error, data) {
+	d3.json(file ,function(error, data) {
 		if (error) throw error;
 
 		// making numbers of the string function
