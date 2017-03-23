@@ -29,66 +29,51 @@ d3.queue(2)
     // 		mapLoad(data);
     // 	})
     // }, "https://raw.githubusercontent.com/alexwit/DataProcessing/master/Homework/week-6/data/happiness2016.json")
-    // .await(errorCheck);
+    .await(errorCheck);
 
 
 function errorCheck(error){
 	if (error) throw error; 
 }
 
-// Draws map and scatterplot for 2015
-function callBackWorld2015(data){
+// // Draws map and scatterplot for 2015
+// function callBackWorld2015(data){
 
-	d3.select("")
+// 	d3.select("")
 
 
-}
+// }
 
 // https://raw.githubusercontent.com/alexwit/DataProcessing/master/Homework/week-6/data/happiness2016.json
 //https:raw.githubusercontent.com/alexwit/DataProcessing/master/Homework/week-6/data/hapiness2015.json
 function mapLoad(data) {
 
-	console.log(data, "test");
 	postLoad();
-	// setting the value to percentage
-	// var formatValue = d3.format(",.2%");
+	
+	// getting the min and max value
+	var onlyUsage = data.map(function(obj) { return obj.happinessScore; });
+	var minValue = Math.min.apply(null, onlyUsage),
+			maxValue = Math.max.apply(null, onlyUsage);
+	
+	// dataset containing info for filling the countries 
+	dataset = {};	
 
-	// // getting the data from a json file
-	// d3.json(file ,function(error, data) {
-	// 	if (error) throw error;
+	// create color palette function
+	var paletteScale = d3.scale.linear()
+	    .domain([minValue,maxValue])
+	    .range(["#62808d","#FFF550"]); // light grey - yellow
+	 // fill dataset in appropriate format
+	data.forEach(function(item){ //
+	    // item example value ["USA", 70]
+	    var iso = item.countryCode,
+	            value = item.happinessScore;
+	    dataset[iso] = { numberOfThings: value, fillColor: paletteScale(value) };
+	});   
 
-		// making numbers of the string function
-		data.forEach(function(d) {
-		 d.happinessScore = +d.happinessScore;
-		});
-
-		// getting the min and max value
-		var onlyUsage = data.map(function(obj) { return obj.happinessScore; });
-		var minValue = Math.min.apply(null, onlyUsage),
-				maxValue = Math.max.apply(null, onlyUsage);
+	rendermap();
+	postLoad();
+	renderScatterplot(data)
 		
-		// dataset containing info for filling the countries 
-		dataset = {};	
-
-		// create color palette function
-		var paletteScale = d3.scale.linear()
-		    .domain([minValue,maxValue])
-		    .range(["#62808d","#FFF550"]); // light grey - yellow
-		 // fill dataset in appropriate format
-		data.forEach(function(item){ //
-		    // item example value ["USA", 70]
-		    var iso = item.countryCode,
-		            value = item.happinessScore;
-		    dataset[iso] = { numberOfThings: value, fillColor: paletteScale(value) };
-		});   
-
-		rendermap();
-		postLoad();
-		renderScatterplot(data)
-		
-
-	// });
-
 	// Ik kan geen reden vinden waarom deze niet zou werken? 
 	function postLoad(){
 
@@ -299,27 +284,20 @@ function mapLoad(data) {
 
 
 
-		// Nog niet mogelijk om vorig ingekleurde land terug te veranderen
+		// Highlights clicked country from the scatterplot in the world map 
 		function onClick(selected){
-			
-			if (clickedCol) {
-				// select vorige land fill = clickedCol
-
-			} 
-
-			// clickedCol = d3.rgb(selected.attr("style"));
-			// console.log(clickedCol);
-			// sla nieuwe land + kleur op
-			clickedCountry = selected;
-			console.log(clickedCountry);
-			// clickedCol = 
-			// console.log(fillColor);
 			var m = {};
-			// console.log(d3.rgb(m[selected.countryCode].attr("style")));
-			m[selected.countryCode] = '#FF0000';
-			map.updateChoropleth(m);
-			
+			if (clickedCol) {
+				// sets color back to previous color in the list
+				m[clickedCountry.countryCode] = clickedCol;
+			} 
+		
+			// saves new clicked country and color
+			clickedCountry = selected;
+			clickedCol = dataset[clickedCountry.countryCode].fillColor;
 
+			m[selected.countryCode] = '#FF0000'; // Highlight RED 
+			map.updateChoropleth(m);
 		}   
 
 		
@@ -364,28 +342,8 @@ function mapLoad(data) {
 	    	return "translate(" + x(d[xCat]) + "," + y(d[yCat]) + ")";
 	  	}	
 
-	
-		  // function change() {
-		  //   xCat = "Carbs";
-		  //   xMax = d3.max(data, function(d) { return d[xCat]; });
-		  //   xMin = d3.min(data, function(d) { return d[xCat]; });
-
-		  //   zoomBeh.x(x.domain([xMin, xMax])).y(y.domain([yMin, yMax]));
-
-		  //   var svg = d3.select("#scatterplot").transition();
-
-		  //   svg.select(".x.axis").duration(750).call(xAxis).select(".label").text(xCat);
-
-		  //   objects.selectAll(".dot").transition().duration(1000).attr("transform", transform);
-		  // }
-
-	 
-
-
-
 	  
 	}
 
-	
 
 }
