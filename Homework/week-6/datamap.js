@@ -16,34 +16,54 @@ window.onload = function () {
 // que json files
 d3.queue(2)
     .defer(function(url, callback) {
-		d3.json(url, function(error, file) {
-			if (error) throw error;
-			// draw map function
-			mapLoad(file);
-		})
-	}, "https:raw.githubusercontent.com/alexwit/DataProcessing/master/Homework/week-6/data/hapiness2015.json")
-    .await(if (error) throw error;);
+		d3.json(url, function(error, data) {
+				
+				if (error) throw error;
+				// draw map function
+				mapLoad(data);
+			})
+		}, "https://raw.githubusercontent.com/alexwit/DataProcessing/master/Homework/week-6/data/happiness2016.json")
+    // .defer(function(url,callback) {
+    // 	d3.json(url, function(error, data) {
+    // 		if(error) throw error;
+    // 		mapLoad(data);
+    // 	})
+    // }, "https://raw.githubusercontent.com/alexwit/DataProcessing/master/Homework/week-6/data/happiness2016.json")
+    // .await(errorCheck);
+
+
+function errorCheck(error){
+	if (error) throw error; 
+}
+
+// Draws map and scatterplot for 2015
+function callBackWorld2015(data){
+
+	d3.select("")
+
+
+}
 
 // https://raw.githubusercontent.com/alexwit/DataProcessing/master/Homework/week-6/data/happiness2016.json
 //https:raw.githubusercontent.com/alexwit/DataProcessing/master/Homework/week-6/data/hapiness2015.json
-function mapLoad(file) {
+function mapLoad(data) {
 
-	
+	console.log(data, "test");
 	postLoad();
 	// setting the value to percentage
 	// var formatValue = d3.format(",.2%");
 
-	// getting the data from a json file
-	d3.json(file ,function(error, data) {
-		if (error) throw error;
+	// // getting the data from a json file
+	// d3.json(file ,function(error, data) {
+	// 	if (error) throw error;
 
 		// making numbers of the string function
 		data.forEach(function(d) {
-		 d.hapinessScore = +d.hapinessScore;
+		 d.happinessScore = +d.happinessScore;
 		});
 
 		// getting the min and max value
-		var onlyUsage = data.map(function(obj) { return obj.hapinessScore; });
+		var onlyUsage = data.map(function(obj) { return obj.happinessScore; });
 		var minValue = Math.min.apply(null, onlyUsage),
 				maxValue = Math.max.apply(null, onlyUsage);
 		
@@ -58,7 +78,7 @@ function mapLoad(file) {
 		data.forEach(function(item){ //
 		    // item example value ["USA", 70]
 		    var iso = item.countryCode,
-		            value = item.hapinessScore;
+		            value = item.happinessScore;
 		    dataset[iso] = { numberOfThings: value, fillColor: paletteScale(value) };
 		});   
 
@@ -67,7 +87,7 @@ function mapLoad(file) {
 		renderScatterplot(data)
 		
 
-	});
+	// });
 
 	// Ik kan geen reden vinden waarom deze niet zou werken? 
 	function postLoad(){
@@ -172,7 +192,7 @@ function mapLoad(file) {
 
 		// clarify region 
 		var xCat = "trust",
-		    yCat = "hapinessScore"
+		    yCat = "happinessScore"
 		    rCat = "Economy",
 		    colorCat = "Region",
 		    cCat = "Country";

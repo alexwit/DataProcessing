@@ -4,12 +4,25 @@
 		<link rel="stylesheet" type="text/css" href="datamap.css">
 		<script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
-		 <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+		<script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+		<script src="https://d3js.org/d3-queue.v3.min.js"></script>
 		<script src="//datamaps.github.io/scripts/0.4.4/datamaps.world.min.js"></script>
 		<script type="text/javascript" src="datamap.js"></script>
 	</head>
 	<body>
 		<div id="header"> <h3>AS Wittebrood 10288880</h3></div>
+
+			<div class="radio">
+				<h3>Show the state of global happiness in year: </h3>
+				<ul>
+					<li>
+						<input type="radio" name="year" value="2016" id="twoksix" checked="checked"><label>2016</label><br>
+					</li>
+					<li>
+						<input type="radio" name="year" value="2015" id="twokfive"><label>2015</label>
+					</li>
+				</ul>
+
 		<div class="container" id="map" style="position: relative; width: 800px; height: 500px; ">	
 		</div>
 				<br>
