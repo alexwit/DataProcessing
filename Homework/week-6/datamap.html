@@ -1,34 +1,56 @@
 <!DOCTYPE html>
-<html>
+<html en>
 	<head>
-		<link rel="stylesheet" type="text/css" href="datamap.css">
 		<script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
 		<script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
 		<script src="https://d3js.org/d3-queue.v3.min.js"></script>
-		<script src="//datamaps.github.io/scripts/0.4.4/datamaps.world.min.js"></script>
+		<script type="text/javascript" src="jquery-3.2.0.min.js"></script>
+		<script type="text/javascript" src="datamaps.world.min.js"></script>
 		<script type="text/javascript" src="datamap.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="datamap.css">
 	</head>
 	<body>
-		<div id="header"> <h3>AS Wittebrood 10288880</h3></div>
+		
+		<div id="infoText" class="col-xs-12 col-md-6">
+			<div id="header"> <h3>AS Wittebrood 10288880</h3>
+			</div>
+				<div class="dropdown">
+					<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" onchange="dropdown()">Choose year<span class="caret"></span></button>
+					<ul class="dropdown-menu">
+						<li><a href="#" data-id="2016">2016</a></li>
+				    	<li><a href="#" data-id="2015">2015</a></li>
+				  	</ul>
+				</div>
 
-			<div class="radio">
-				<h3>Show the state of global happiness in year: </h3>
-				<ul>
-					<li>
-						<input type="radio" name="year" value="2016" id="twoksix" checked="checked"><label>2016</label><br>
-					</li>
-					<li>
-						<input type="radio" name="year" value="2015" id="twokfive"><label>2015</label>
-					</li>
-				</ul>
 
-		<div class="container" id="map" style="position: relative; width: 800px; height: 500px; ">	
+			<h3> Context</h3>
+			<p>
+			The World Happiness Report is a landmark survey of the state of global happiness. The first report was published in 2012, the second in 2013, and the third in 2015. The World Happiness Report 2016 Update, which ranks 156 countries by their happiness levels, was released today in Rome in advance of UN World Happiness Day, March 20th. Leading experts across fields (economics, psychology, survey analysis, national statistics, health, public policy and more) describe how measurements of well-being can be used effectively to assess the progress of nations. The reports review the state of happiness in the world today and show how the new science of happiness explains personal and national variations in happiness. They reflect a new worldwide demand for more attention to happiness as a criteria for government policy.
+			</p>
+			<h3>Content</h3>
+			<p>
+			The happiness scores and rankings use data from the Gallup World Poll. The scores are based on answers to the main life evaluation question asked in the poll. This question, known as the Cantril ladder, asks respondents to think of a ladder with the best possible life for them being a 10 and the worst possible life being a 0 and to rate their own current lives on that scale. The scores are from nationally representative samples for the years 2013-2015 and use the Gallup weights to make the estimates representative. The columns following the happiness score estimate the extent to which each of six factors (economic production, social support, life expectancy, freedom, absence of corruption, and generosity) contribute to making life evaluations higher in each country than they are in Dystopia, a hypothetical country that has values equal to the world's lowest national averages for each of the six factors. They have no impact on the total score reported for each country, but they do explain why some countries rank higher than others.
+			</p>
+
+			<h3>Usage</h3>
+			<h4> World map</h4>
+			<p> The worldmap gives an Mercator overview of all the country's hapiness scores. If you hover a country it will show the hapiness score based on the cantril ladder explained in paragraph content. </p>
+			
+			<h4> Scatter plot</h4>
+			<p> The Scatter plot gives an overview of the happiness score of each country relative to their  trust in the government. If you hover over a dot it will show the happiness score of that specific country. The dot is also clickable and will highlight a country in the color RED on the World map. If you click on another country the clicked country will highlight in RED and the last country will return to their previous color. The size of the dot depends on the GPA per capita of that country.</p>
+			<br>
+			<h4><span>Data sources:</span>
+			<a href="https://www.kaggle.com/unsdsn/world-happiness/version/1">Kaggle database</a>, World Happiness score based on research of the UN</h4>
 		</div>
-				<br>
-
-		<div class="container" id="scatterplot"></div>
-				<!-- TODO: FIX data sources -->
-		<h4><span>Data sources:</span><a href="http://databank.worldbank.org/data/reports.aspx?source=2&series=EG.USE.PCAP.KG.OE&country=#">Databank Worldbank</a>, world acces to electricity per country</h4>
+		<div class="col-xs-12 col-md-6">
+			<div class="container" id="map" style="position: relative; width: 800px; height: 700px; "></div>
+		</div>
+		<div class="col-xs-12 col-md-6">
+			<div class="container" id="scatterplot"></div>
+		</div>
+		
 	</body>
 </html>

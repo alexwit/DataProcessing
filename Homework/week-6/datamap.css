@@ -1,9 +1,28 @@
 /*AS Wittebrood*/
 /*12088880*/
 
-
 .container {
   float: left;
+}
+
+.datamap {
+  /*padding: 50px ;*/
+  top: -90px;
+}
+
+.header{
+  padding: 200px;
+  left: 50px;
+}
+
+/* Op de een of ander manier lukt het me niet om de header te veranderen
+, de header te verplaatsen en de top margin van de map aan te passen.*/
+.dropdown-menu{
+  margin-left: 50px;
+}
+.map {
+  left: 50px;
+
 }
 
 .dot {
@@ -37,13 +56,36 @@
   margin: -1px 0 0 0;
   top: 100%;
   left: 0;
+} 
+
+.link{
+  float:left;
+}
+
+.gradient-rect {
+  padding-left: 10px;
+  padding-right: 10px;
+
+}
+
+.scatterplot { 
+  position: relative;
+  top: 100px;
+  left: 50px;
 }
 
 rect { 
 	fill: transparent;
 	shape-rendering: crispEdges;
+
 }
 
+.gradient-rect{
+  position: relative;
+  top:50px;
+
+
+}
 .axis path,
 .axis line{ 
 	fill: none;

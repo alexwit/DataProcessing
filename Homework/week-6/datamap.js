@@ -2,125 +2,73 @@
 // 10288880
 // Making an interactive map
 
-
 var series;
 var minValue;
 var maxValue;
 var dataset;
 var map;
-// loads javascript after html is ready
+var datasrc1;
+var datasrc2;
+// sets default year
+var year = "2016"; 
+
+// waits till page is loaded before getting and plotting the data
 window.onload = function () {
-	mapLoad();
+	queuer();
+
+	// resets map and scatter plot for the chosen year
+	$(".dropdown-menu li a").click(function(){
+		year = $(this).attr("data-id")
+		dropdown(year);	  	
+	});
 }
 
-// que json files
-d3.queue(2)
-    .defer(function(url, callback) {
-		d3.json(url, function(error, data) {
-				
-				if (error) throw error;
-				// draw map function
-				mapLoad(data);
-			})
-		}, "https://raw.githubusercontent.com/alexwit/DataProcessing/master/Homework/week-6/data/happiness2016.json")
-    // .defer(function(url,callback) {
-    // 	d3.json(url, function(error, data) {
-    // 		if(error) throw error;
-    // 		mapLoad(data);
-    // 	})
-    // }, "https://raw.githubusercontent.com/alexwit/DataProcessing/master/Homework/week-6/data/happiness2016.json")
-    .await(errorCheck);
 
+function queuer() {
+	// queue json files
+	d3.queue(2)
+	    .defer(function(url, callback) {
+			d3.json(url, function(error, data) {
+					
+					if (error) throw error;
+					// saves dataset local
+					datasrc1 = data;
+					// draw map function
+					mapLoad(data);
+				})
+			}, "https://raw.githubusercontent.com/alexwit/DataProcessing/master/Homework/week-6/data/happiness2016.json")
+	    .defer(function(url,callback) {
+	    	d3.json(url, function(error, data) {
+	    		if(error) throw error;
+	    		// saves data set local
+	    		datasrc2 = data;
+	    	})
+	    }, "https://raw.githubusercontent.com/alexwit/DataProcessing/master/Homework/week-6/data/hapiness2015.json")
+	    .await(errorCheck);
 
-function errorCheck(error){
-	if (error) throw error; 
-}
-
-// // Draws map and scatterplot for 2015
-// function callBackWorld2015(data){
-
-// 	d3.select("")
-
-
-// }
-
-// https://raw.githubusercontent.com/alexwit/DataProcessing/master/Homework/week-6/data/happiness2016.json
-//https:raw.githubusercontent.com/alexwit/DataProcessing/master/Homework/week-6/data/hapiness2015.json
-function mapLoad(data) {
-
-	postLoad();
-	
-	// getting the min and max value
-	var onlyUsage = data.map(function(obj) { return obj.happinessScore; });
-	var minValue = Math.min.apply(null, onlyUsage),
-			maxValue = Math.max.apply(null, onlyUsage);
-	
-	// dataset containing info for filling the countries 
-	dataset = {};	
-
-	// create color palette function
-	var paletteScale = d3.scale.linear()
-	    .domain([minValue,maxValue])
-	    .range(["#62808d","#FFF550"]); // light grey - yellow
-	 // fill dataset in appropriate format
-	data.forEach(function(item){ //
-	    // item example value ["USA", 70]
-	    var iso = item.countryCode,
-	            value = item.happinessScore;
-	    dataset[iso] = { numberOfThings: value, fillColor: paletteScale(value) };
-	});   
-
-	rendermap();
-	postLoad();
-	renderScatterplot(data)
-		
-	// Ik kan geen reden vinden waarom deze niet zou werken? 
-	function postLoad(){
-
-		/// krijg svg niet te pakken? 
-		var svg = d3.select(".datamap"); // datamap, getElementId/ Class geprobeerd? 
-
-
-		// adds title and gradient scale
-		var margin = {top: 100, right: 30, bottom: 30, left: 100},
-		width = 800 - margin.left - margin.right,
-	    height = 500 - margin.top - margin.bottom;
-
-		svg.append("text")
-			.attr("x", (width / 2))
-			.attr("y", 0 - (margin.top / 2))
-			.attr("text-anchor", "middle")
-			.style("font-size", "15px")
-			.style("text-decoration", "underline")
-			.text("Cantril ladder");
-
-		var defs = svg.append("defs");
-
-		//Append a linear Gradient element to the SVG
-		var linearGradient = defs.append("linearGradient")
-			.attr("id", "linear-gradient");
-
-		linearGradient
-			.attr("x1", "0%")
-			.attr("x2", "100%")
-
-		linearGradient.append("stop")
-			.attr("offset", "0%")
-			.attr("stop-color", "##62808d") // brown
-
-		linearGradient.append("stop")
-			.attr("offset", "100%")
-			.attr("stop-color", "#FFF550") // yellow
-
-		svg.append("rect")
-			.attr("width", 150)
-			.attr("height", 15)
-			.style("fill", "url(#linear-gradient)");
-
-
+	function errorCheck(error){
+		if (error) throw error; 
 	}
-	     
-	function rendermap () {
+}
+
+
+// removes the old data and plots new map and scatterplot for given year
+function dropdown(year) {
+	// 
+	if (year == "2016"){ 
+		d3.select(".datamap").remove();
+		d3.select(".datamaps-hover").remove();
+		d3.select(".scatter").remove();
+		mapLoad(datasrc1);
+	} else if(year == "2015"){
+		d3.select(".datamap").remove();
+		d3.select(".datamaps-hover").remove();
+		d3.select(".scatter").remove();
+		mapLoad(datasrc2);
+	}
+}
+
+function rendermap () {
 		// render map
 		map = new Datamap({
 	        element: document.getElementById('map'),
@@ -154,19 +102,106 @@ function mapLoad(data) {
 	        }
 
 	    });
-	}
+}
 
-	function renderScatterplot (data) {
 
-	      // VERSION 2.0
 
-	      // http://bl.ocks.org/peterssonjonas/4a0e7cb8d23231243e0e
+// draws the map
+function mapLoad(data) {
+
+	// getting the min and max value
+	var onlyUsage = data.map(function(obj) { return obj.happinessScore; });
+	var minValue = Math.min.apply(null, onlyUsage),
+			maxValue = Math.max.apply(null, onlyUsage);
+	
+	// dataset containing info for filling the countries 
+	dataset = {};	
+
+	// create color palette function
+	var paletteScale = d3.scale.linear()
+	    .domain([minValue,maxValue])
+	    .range(["#62808d","#FFF550"]); // light grey - yellow
+	 // fill dataset in appropriate format
+	data.forEach(function(item){ //
+	    // item example value ["USA", 70]
+	    var iso = item.countryCode,
+	            value = item.happinessScore;
+	    dataset[iso] = { numberOfThings: value, fillColor: paletteScale(value) };
+	});   
+
+	rendermap();
+	renderScatterplot(data)
+
+	
+	var svg = d3.select(".datamap");  
+	// adds title and gradient scale
+	var margin = {top: 60, right: -30, bottom: 30, left: -30},
+	width = 800 - margin.left - margin.right,
+    height = 600 - margin.top - margin.bottom;
+
+    // sets Title for the Map
+	svg.append("text")
+		.attr("x", (width / 2))
+		.attr("y", (margin.top / 2))
+		.attr("text-anchor", "middle")
+		.style("font-size", "15px")
+		.style("text-decoration", "underline")
+		.text("Happiness per country in: " + year);
+
+	var defs = svg.append("defs");
+
+	//Append a linear Gradient element to the SVG
+	var linearGradient = defs.append("linearGradient")
+		.attr("id", "linear-gradient");
+
+	linearGradient
+		.attr("y1", "0%")
+		.attr("y2","0%")
+		.attr("x1", "0%")
+		.attr("x2", "100%");
+
+	linearGradient.append("stop")
+		.attr("offset", "0%")
+		.attr("stop-color", "#62808d") // brown
+
+	linearGradient.append("stop")
+		.attr("offset", "100%")
+		.attr("stop-color", "#FFF550") // yellow
+
+	svg.append("text")
+		.attr("x", width * 0.15)
+		.attr("y", height * 1.17)
+		.text("0")
+
+	// title and numbers to the gradient bar
+	svg.append("text")
+		.attr("x", width * 0.33)
+		.attr("y", height * 1.17)
+		.text("Cantril ladder (happiness Index)")
+
+	svg.append("text")
+		.attr("x", width * 0.73)
+		.attr("y", height * 1.17)
+		.text("10")
+
+	svg.append("rect")
+		.attr("x", width * 0.15)
+		.attr("y", height * 1.19)
+		.attr("class", "gradient-rect")
+		.attr("width", width * 0.6)
+		.attr("height", height * 0.05)
+		.style("fill", "url(#linear-gradient)");
+}
+
+
+function renderScatterplot (data) {
 
 		var margin = { top: 50, right: 300, bottom: 50, left: 50 },
 	    outerWidth = 1050,
 	    outerHeight = 500,
 	    width = outerWidth - margin.left - margin.right,
 	    height = outerHeight - margin.top - margin.bottom;
+
 
 		var x = d3.scale.linear()
 		    .range([0, width]).nice();
@@ -182,6 +217,7 @@ function mapLoad(data) {
 		    colorCat = "Region",
 		    cCat = "Country";
 
+		// sets the domain
 		var xMax = d3.max(data, function(d) { return d[xCat]; }) * 1.05,
 	      	xMin = d3.min(data, function(d) { return d[xCat]; }),
 	      	xMin = xMin > 0 ? 0 : xMin,
@@ -211,24 +247,21 @@ function mapLoad(data) {
 		       return cCat + ": " + d[cCat] + "<br>" + xCat + ": " + d[xCat] + "<br>" + yCat + ": " + d[yCat];
 		    });
 
-		
-
-      // ZOOM is uit
-  // var zoomBeh = d3.behavior.zoom()
-  //     .x(x)
-  //     .y(y)
-  //     .scaleExtent([0, 500])
-  //     .on("zoom", zoom);
-
-	  var svg = d3.select("#scatterplot")
+	  	var svg = d3.select("#scatterplot")
 		    .append("svg")
+		    	.attr("class", "scatter")
 		      	.attr("width", outerWidth)
 		      	.attr("height", outerHeight)
 		    .append("g")
 		      	.attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-		      // .call(zoomBeh);
-
+		  
 		svg.call(tip);
+
+		svg.append("text")
+			.attr("class","scatter-title")
+			.attr("x", width *0.15)
+			.attr("y", height *-0.01)
+			.text("Distribution of Hapiness score per country relative to the trust in the Government in: " + year)
 
 		svg.append("rect")
 		    .attr("width", width)
@@ -251,7 +284,7 @@ function mapLoad(data) {
 		    .append("text")
 		      	.classed("label", true)
 		      	.attr("transform", "rotate(-90)")
-		      	.attr("y", -margin.left)
+		      	.attr("y", -margin.left + 5)
 		      	.attr("dy", ".71em")
 		      	.style("text-anchor", "end")
 		      	.text(yCat);
@@ -277,12 +310,8 @@ function mapLoad(data) {
 		    .attr("x2", 0)
 		    .attr("y2", height);
 
-
-
 		var clickedCol;
 		var clickedCountry;
-
-
 
 		// Highlights clicked country from the scatterplot in the world map 
 		function onClick(selected){
@@ -291,18 +320,12 @@ function mapLoad(data) {
 				// sets color back to previous color in the list
 				m[clickedCountry.countryCode] = clickedCol;
 			} 
-		
 			// saves new clicked country and color
 			clickedCountry = selected;
 			clickedCol = dataset[clickedCountry.countryCode].fillColor;
-
 			m[selected.countryCode] = '#FF0000'; // Highlight RED 
 			map.updateChoropleth(m);
 		}   
-
-		
-
-
 
 		objects.selectAll(".dot")
 		    .data(data)
@@ -315,10 +338,6 @@ function mapLoad(data) {
 		      	.on("mouseover", tip.show )
 		  		.on("mouseout", tip.hide );
 		  		
-
-
-		      // tip.show
-		      //tip.hide
 	  	var legend = svg.selectAll(".legend")
 		    .data(color.domain())
 		    .enter().append("g")
@@ -335,15 +354,9 @@ function mapLoad(data) {
 		    .attr("dy", ".35em")
 		    .text(function(d) { return d; });
 
-		// d3.select("input").on("click", change);
-
 
 	  	function transform(d) {
 	    	return "translate(" + x(d[xCat]) + "," + y(d[yCat]) + ")";
 	  	}	
-
 	  
 	}
-
-
-}
