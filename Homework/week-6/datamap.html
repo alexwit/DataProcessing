@@ -14,7 +14,7 @@
 	</head>
 	<body>
 		
-		<div id="infoText" class="col-xs-12 col-md-6">
+		<div id="infoText" class="col-xs-6 col-md-5">
 			<div id="header"> <h3>AS Wittebrood 10288880</h3>
 			</div>
 				<div class="dropdown">
@@ -40,15 +40,50 @@
 			<p> The worldmap gives an Mercator overview of all the country's hapiness scores. If you hover a country it will show the hapiness score based on the cantril ladder explained in paragraph content. </p>
 			
 			<h4> Scatter plot</h4>
-			<p> The Scatter plot gives an overview of the happiness score of each country relative to their  trust in the government. If you hover over a dot it will show the happiness score of that specific country. The dot is also clickable and will highlight a country in the color RED on the World map. If you click on another country the clicked country will highlight in RED and the last country will return to their previous color. The size of the dot depends on the GPA per capita of that country.</p>
-			<br>
-			<h4><span>Data sources:</span>
-			<a href="https://www.kaggle.com/unsdsn/world-happiness/version/1">Kaggle database</a>, World Happiness score based on research of the UN</h4>
+			<p> The Scatter plot gives an overview of the happiness score of each country relative to their  trust in the government. If you hover over a dot it will show the happiness score of that specific country. The dot is also clickable and will highlight a country in the color RED on the World map. If you click on another country the clicked country will highlight in RED and the last country will return to their previous color. The size of the dot depends on the GDP per capita of that country.</p>
+			<br>	
+
+
+			<h4> Economy - GDP per capita</h4>
+			<p>
+			GDP per capita is in terms of Purchasing
+			Power Parity (PPP) adjusted to constant 2011
+			international dollars, taken from the World
+			Development Indicators (WDI) released by
+			the World Bank in December 2015. See the
+			appendix for more details. GDP data for 2015
+			are not yet available, so we extend the GDP
+			time series from 2014 to 2015 using country-specific
+			forecasts of real GDP growth from
+			the OECD Economic Outlook No. 98 (Edition
+			2015/2) and World Bank's Global Economic
+			Prospects (December 2014 release), after adjustment
+			for population growth. The equation
+			uses the natural log of GDP per capita,
+			since that form fits the data significantly better
+			than does GDP per capita.
+			</p>
+
+			<h4>trust in government</h4>
+			<p>
+			Perceptions of corruption are the average of
+			binary answers to two GWP questions: "Is
+			corruption widespread throughout the government
+			or not" and "Is corruption widespread
+			within businesses or not?" Where data
+			for government corruption are missing, the
+			perception of business corruption is used as
+			the overall corruption-perception measure. 
+			</p>
+
+			<h4><span>Data sources:</span><br>
+			<a href="https://www.kaggle.com/unsdsn/world-happiness/version/1">Kaggle database</a>, World Happiness score based on research of the UN</h4> <br>
+			<h4><a href="http://worldhappiness.report/wp-content/uploads/sites/2/2016/03/HR-V1Ch2_web.pdf">World Happiness report</a></h4>
 		</div>
-		<div class="col-xs-12 col-md-6">
+		<div class="col-xs-6 col-md-6">
 			<div class="container" id="map" style="position: relative; width: 800px; height: 700px; "></div>
 		</div>
-		<div class="col-xs-12 col-md-6">
+		<div class="col-xs-6 col-md-6">
 			<div class="container" id="scatterplot"></div>
 		</div>
 		

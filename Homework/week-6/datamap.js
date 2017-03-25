@@ -68,6 +68,8 @@ function dropdown(year) {
 	}
 }
 
+
+// renders the map
 function rendermap () {
 		// render map
 		map = new Datamap({
@@ -90,7 +92,7 @@ function rendermap () {
 	                // show's tooltip with country name an no data info
 	                if (!data || data.value == 0) { return ['<div class="hoverinfo">',
 	                    '<strong>', geo.properties.name, '</strong>',
-	                    '<br> Hapiness Cantril: <strong> No data </strong>',
+	                    '<br> Cantril ladder (0-10): <strong> No data </strong>',
 	                    '</div>'].join(''); } 
 
 	                // tooltip content of country
@@ -106,7 +108,7 @@ function rendermap () {
 
 
 
-// draws the map
+// draws the map with the data given by the Queuer function
 function mapLoad(data) {
 
 	// getting the min and max value
@@ -123,7 +125,7 @@ function mapLoad(data) {
 	    .range(["#62808d","#FFF550"]); // light grey - yellow
 	 // fill dataset in appropriate format
 	data.forEach(function(item){ //
-	    // item example value ["USA", 70]
+	    // item example value ["USA", "#FFFFFF"]
 	    var iso = item.countryCode,
 	            value = item.happinessScore;
 	    dataset[iso] = { numberOfThings: value, fillColor: paletteScale(value) };
@@ -132,7 +134,6 @@ function mapLoad(data) {
 	rendermap();
 	renderScatterplot(data)
 
-	
 	var svg = d3.select(".datamap");  
 	// adds title and gradient scale
 	var margin = {top: 60, right: -30, bottom: 30, left: -30},
@@ -141,10 +142,10 @@ function mapLoad(data) {
 
     // sets Title for the Map
 	svg.append("text")
-		.attr("x", (width / 2))
-		.attr("y", (margin.top / 2))
+		.attr("x", (width * 0.5))
+		.attr("y", (height * 0.2))
 		.attr("text-anchor", "middle")
-		.style("font-size", "15px")
+		.style("font-size", "25px")
 		.style("text-decoration", "underline")
 		.text("Happiness per country in: " + year);
 
@@ -170,23 +171,23 @@ function mapLoad(data) {
 
 	svg.append("text")
 		.attr("x", width * 0.15)
-		.attr("y", height * 1.17)
+		.attr("y", height * 1.23)
 		.text("0")
 
 	// title and numbers to the gradient bar
 	svg.append("text")
 		.attr("x", width * 0.33)
-		.attr("y", height * 1.17)
+		.attr("y", height * 1.23)
 		.text("Cantril ladder (happiness Index)")
 
 	svg.append("text")
 		.attr("x", width * 0.73)
-		.attr("y", height * 1.17)
+		.attr("y", height * 1.23)
 		.text("10")
 
 	svg.append("rect")
 		.attr("x", width * 0.15)
-		.attr("y", height * 1.19)
+		.attr("y", height * 1.25)
 		.attr("class", "gradient-rect")
 		.attr("width", width * 0.6)
 		.attr("height", height * 0.05)
@@ -202,15 +203,13 @@ function renderScatterplot (data) {
 	    width = outerWidth - margin.left - margin.right,
 	    height = outerHeight - margin.top - margin.bottom;
 
-
 		var x = d3.scale.linear()
 		    .range([0, width]).nice();
 
 		var y = d3.scale.linear()
 		    .range([height, 0]).nice();
 
-
-		// clarify region 
+ 		// Columns headers in dataset
 		var xCat = "trust",
 		    yCat = "happinessScore"
 		    rCat = "Economy",
@@ -240,11 +239,13 @@ function renderScatterplot (data) {
 
 	  	var color = d3.scale.category10();
 
+
+	  	// creates tooltip with Economy, Trust and Hapiness score of hovered country
 		var tip = d3.tip()
 		    .attr("class", "tip")
 		    .offset([-10, 0])
 		    .html(function(d) {
-		       return cCat + ": " + d[cCat] + "<br>" + xCat + ": " + d[xCat] + "<br>" + yCat + ": " + d[yCat];
+		       return cCat + ": " + d[cCat] + "<br>" + xCat + ": " + d[xCat] + "<br>" + rCat + ": " + d[rCat] + "<br>" + yCat + ": " + d[yCat];
 		    });
 
 	  	var svg = d3.select("#scatterplot")
@@ -261,7 +262,7 @@ function renderScatterplot (data) {
 			.attr("class","scatter-title")
 			.attr("x", width *0.15)
 			.attr("y", height *-0.01)
-			.text("Distribution of Hapiness score per country relative to the trust in the Government in: " + year)
+			.text("Distribution of Happiness score per country relative to the trust in the Government in: " + year)
 
 		svg.append("rect")
 		    .attr("width", width)
@@ -327,6 +328,7 @@ function renderScatterplot (data) {
 			map.updateChoropleth(m);
 		}   
 
+		// creates dot and size for GPD per Capita and sets and gives an color depending on the region 
 		objects.selectAll(".dot")
 		    .data(data)
 		    .enter().append("circle")
